@@ -1,0 +1,73 @@
+{% extends "MainBase.html" %}
+{% block css %}<link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}"> {% endblock%}
+{% block title %} Homepage {% endblock %}
+
+{% block content %}
+            <div class="container-fluid">
+        <div class="row h1">
+            <div class="  col-md-6 col-lg-6 h2 ">
+                {% if session %}
+                <a href="{{url_for('classification')}}">
+                    {% else %}
+                    <a href="{{url_for('login')}}">
+                        {% endif %}
+                <div class="slide-child">
+                <img src="{{url_for('static',filename='image/logo/b3.jpg')}}" alt="Sản phẩm 1" class=" ">
+                <div class="title">
+                    <h4 class="text">CLASSIFICATION</h4>
+
+                </div>
+            </div>
+
+            </a>
+            </div>
+            <div class="  col-md-6 col-lg-6 h2 ">
+ {% if session %}
+                     <a href="{{url_for('history')}}">
+                    {% else %}
+                          <a href="{{url_for('login')}}">
+
+                        {% endif %}
+
+                <div class="slide-child">
+
+                <img src="{{url_for('static',filename='image/logo/b4.jpeg')}}" alt="Sản phẩm 1" class=" ">
+                <div class="title">
+                    <h4 class="text">HISTORY</h4>
+                </div>
+
+            </div>
+
+            </a>
+            </div>
+        </div>
+    </div>
+    <div class=" container-fluid h3">
+        <div class="row">
+            <div class="col-md-6 pic1 ">
+                <img src="{{url_for('static',filename='image/logo/tit.jpg')}}" alt="">
+            </div>
+            <div class="col-md-3 pic2">
+
+                <div class="col-md-12 h4 ">
+                    <img src="{{url_for('static',filename='image/logo/h5.jpg')}}" alt="">
+                </div>
+                <div class="col-md-12 h6">
+                    <img src="{{url_for('static',filename='image/logo/h6.jpg')}}"   alt="">
+                </div>
+        </div>
+        <div class="col-md-3 pic3">
+
+            <div class="col-md-12 h4 ">
+                <img src="{{url_for('static',filename='image/logo/b4.jpeg')}}" alt="">
+            </div>
+            <div class="col-md-12  ">
+                <img src="{{url_for('static',filename='image/logo/h9.jpg')}}" alt="">
+            </div>
+
+    </div>
+
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "MainBase.html" %}
+{% block css %}<link rel="stylesheet"
+            href="{{ url_for('static', filename= '/css/mainBase.css') }}">
+<link rel="stylesheet"
+            href="{{ url_for('static', filename= '/css/settings.css') }}">
+
+{% endblock %}
+{% block title %} Setting {% endblock %}
+{% block content %}
+ <div class="container light-style flex-grow-1 container-p-y">
+        <h4 class="font-weight-bold py-3 mb-4 t2">
+            Upload image
+        </h4>
+        <form action="/upload" method ="POST">
+            <label for="files">Select files:</label>
+            <input type="file" id="files" name="files" multiple/><br/>
+            <input type="submit"/>
+        </form>
+        
+
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="{{url_for('static', filename='js/change_pass.js')}}">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Add click event to Cancel button
+            $('#cancelBtn').click(function () {
+                // Show the General tab content
+                $('.tab-pane').removeClass('active show');
+                $('#account-general').addClass('active show');
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,143 @@
+{% extends "MainBase.html" %}
+{% block css %}<link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}">
+<link rel="stylesheet"
+            href="{{ url_for('static', filename= '/css/mainBase.css') }}">{% endblock%}
+{% block title %} Login Fage {% endblock %}
+  {% block nav %}
+ <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <a class="navbar-branch" href="/">
+            <img src="{{url_for('static', filename='image/logo/logo.jpg')}}">
+        </a>
+</nav>
+{% endblock %}
+{% block content %}
+ <section>
+        <div class="container n1">
+        <div class="form-box">
+            <div class="form-value">
+                <form  method="POST" action="/login" id="form">
+                    <h2 style="color: rgb(0, 0, 0); margin-top :10px;">Login</h2>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="email" name="email" id="email" required >
+                        <label for="">Email</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" name="password" id="password" required>
+                        <label for="">Password</label>
+                    </div>
+
+                    <div class="forget">
+                        <label for=""><input type="checkbox">Remember Me </label>
+
+                    </div>
+                    <button>Log in</button>
+                    </form>
+                    <div class="or">
+                        <hr class="my-2.5">
+                        <p>or</p>
+                        <hr class="my-2.5">
+                    </div>
+                    <div class="n5">
+                        <a href="{{url_for('googleLogin')}}">
+                            <button class="n6">
+                                <ion-icon class="icgg" name="logo-google"></ion-icon>
+                                <span style="margin-top: 5px; color:#000000">Continue with Google</span>
+                    </button>
+                        </a>
+                    </div>
+                    <div class="register">
+                        <p>Don't have a account <a href="{{url_for('register')}}">Register</a></p>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+    </section>
+{% endblock %}
+{% block footer %}
+{% endblock %}
+<!--        <section>-->
+<!--            <div class="container n1">-->
+<!--                <div class="form-box">-->
+<!--                    <div class="form-value">-->
+<!--                        <form method="POST" action="/login" id="form">-->
+<!--                            <h2 style="color: white; margin-top: 10px">-->
+<!--                                Login-->
+<!--                            </h2>-->
+<!--                            <div class="inputbox">-->
+<!--                                <ion-icon name="mail-outline"></ion-icon>-->
+<!--                                <input-->
+<!--                                    type="text"-->
+<!--                                    id="email"-->
+<!--                                    name="email"-->
+<!--                                    autocomplete="email"-->
+<!--                                    required />-->
+<!--                                <label for="">Email</label>-->
+<!--                            </div>-->
+<!--                            <div class="inputbox">-->
+<!--                                <ion-icon name="lock-closed-outline"></ion-icon>-->
+<!--                                <input-->
+<!--                                    type="password"-->
+<!--                                    id="password"-->
+<!--                                    name="password"-->
+<!--                                    autocomplete="password" />-->
+
+<!--                                <label for="">Password</label>-->
+<!--                            </div>-->
+<!--                            <div class="forget">-->
+<!--                                <label for=""-->
+<!--                                    ><input-->
+<!--                                        type="checkbox"-->
+<!--                                        autocomplete="checkbox" />Remember Me-->
+<!--                                    <a href="#">Forget Password</a></label-->
+<!--                                >-->
+<!--                            </div>-->
+<!--                            <button class="n8">Log in</button>-->
+<!--                                </form>-->
+<!--                            <div class="or">-->
+<!--                                <hr class="my-2.5" />-->
+<!--                                <p>or</p>-->
+<!--                                <hr class="my-2.5" />-->
+<!--                            </div>-->
+
+<!--                            <div class="n8">-->
+<!--                                <a class="n6" href="/google-login" style="color: #0c2d57;">-->
+<!--                                    <ion-icon-->
+<!--                                        class="icgg"-->
+<!--                                        name="logo-google"></ion-icon>-->
+<!--                                    <span style="margin-top: 5px"-->
+<!--                                        >Continue with Google</span-->
+<!--                                    >-->
+<!--                                </a>-->
+<!--                                </div>-->
+<!--                            <div class="register">-->
+<!--                                <p>-->
+<!--                                    Don't have a account-->
+<!--                                    <a href="/register">Register</a>-->
+<!--                                </p>-->
+<!--                            </div>-->
+
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
+
+
+{% block script %}
+  {% if error %}
+        <script>
+            Swal.fire({
+                title: 'Oops...',
+                text: 'Invalid email or password',
+                icon: 'warning',
+                confirmButtonText: 'Retype',
+            });
+        </script>
+        {% endif %}
+ <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+{% endblock %}
+

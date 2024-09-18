@@ -1,0 +1,157 @@
+{% extends "MainBase.html" %} {% block css %}<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename= '/css/mainBase.css') }}" />
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename= '/css/classification.css') }}" />
+
+{% endblock %} {% block title %} Classification {% endblock %} {% block content
+%}
+<div class="container-fluid">
+    <div class="row confix-margin">
+        <!-- DROP AREA -->
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 tool">
+            <div class="train_1">
+                <div class="train_2 get_history">
+                    <span class="title">
+                        &nbsp;&nbsp;&nbsp;Welcome,{{ session[1] }}
+                    </span>
+                    <div class="user_info">
+                        <img
+                            class="img_user"
+                            src="{{ session[2] }}"
+                            alt="no found" />
+                    </div>
+                </div>
+            </div>
+            <div class="train_1">
+                <div class="train_2 url_form">
+                    <span class="title"> &nbsp;&nbsp;&nbsp;Paste URL</span>
+                    <form class="form_url">
+                        <div class="centered-elements">
+                            <i
+                                style="align-items: center"
+                                class="fa fa-link"
+                                aria-hidden="true"></i>
+                            <input
+                                id="imageURL"
+                                name="imageURL"
+                                class="input-link"
+                                type="text"
+                                placeholder="Paste a link..." />
+                        </div>
+                    </form>
+                    <button class="smI" onclick="downloadImage()">
+                        Download
+                    </button>
+                    <!-- <div class="form-group">
+                            <input type="submit" id="uploadSubmit" value="Upload" class="btn btn-info" onclick="downloadImage()" />
+                        </div> -->
+                </div>
+            </div>
+            <div class="train_1">
+                <!-- <span class="title">&nbsp;&nbsp;&nbsp;&nbsp;Upload Files</span> -->
+                <div
+                    class="train_2"
+                    style="text-align: center"
+                    ondragover="dragOverHandler(event)"
+                    ondrop="dropHandler(event)"
+                    id="drop-area">
+                    <span class="title tl2">Drop File Here or</span>
+                    <form id="uploadImage" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input
+                                type="file"
+                                name="uploadFile[]"
+                                multiple="true"
+                                id="uploadFile"
+                                accept=".jpg, .png, .mp4"
+                                hidden="True" />
+                            <label for="uploadFile" class="input_file">
+                                <i
+                                    style="
+                                        font-weight: 500;
+                                        padding: 0 20px;
+                                        border-radius: 5px;
+                                    "
+                                    class="fa fa-cloud-upload"
+                                    aria-hidden="true"></i>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <input
+                                type="submit"
+                                id="uploadSubmit"
+                                value="Upload"
+                                class="btn btn-info" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- DROP AREA -->
+
+        <!-- DISPLAY  -->
+        <div
+            class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12 process_img"
+            id="process_img">
+            <div>
+                <img
+                    id="displayedImage"
+                    src="{{url_for('static', filename = 'image/logo/logotom.jpg')}}"
+                    alt="Downloaded Image" />
+                <div id="loader"></div>
+                <div id="targetLayer" style="display: none">
+                    <div
+                        style="
+                            text-align: center;
+                            width: 80%;
+                            display: inline-block;
+                            height: 50%;
+                        ">
+                        <video
+                            width="100%"
+                            height="50%"
+                            id="videoRef"
+                            autoplay
+                            muted></video>
+                        <canvas id="canvasRef"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- DISPLAY  -->
+
+        <!-- RESULTS -->
+        <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12 result">
+            <!-- <div class="train_1">
+                    <span class="title"
+                        >&nbsp;&nbsp;&nbsp;&nbsp;Confidence Threshold:</span
+                    >
+                    <div class="flex items-center flex-row gap-2">
+                        <p class="font-mono text-xs">0%</p>
+                        <input
+                            type="range"
+                            min="1"
+                            max="99"
+                            value="50"
+                            class="slider"
+                            id="confidenceSlider" />
+                        <p class="font-mono text-xs">100%</p>
+                    </div>
+                </div> -->
+            <div class="train_1" id="inferenceJson" style="overflow: auto">
+                <span class="title"> &nbsp;&nbsp;&nbsp;&nbsp;Result</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} {% block script %}
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script>
+
+<!-- Add the WebGPU backend to the global backend registry -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgpu/dist/tf-backend-webgpu.js"></script>
+
+<script src="{{url_for('static', filename='js/script.js')}}"></script>
+
+{% endblock %}

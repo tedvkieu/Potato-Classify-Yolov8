@@ -1,0 +1,502 @@
+.navbar #menu-buttons .bg-mobile-dropdown {
+    align-items: center;
+    background-color: transparent;
+    border-style: none;
+    flex-direction: row;
+    gap: 0.25rem;
+    height: auto;
+    left: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    position: relative;
+    top: 0;
+}
+.navbarContainer {
+    position: sticky;
+    background-color: rgb(18, 43, 82);
+    margin-bottom: 30px;
+}
+.sidebarNavigation {
+    width: 100%;
+    height: 44%;
+    background-color: rgb(18, 43, 82);
+    margin-bottom: 30px;
+}
+.logomark {
+    max-width: 50px;
+}
+
+.brand-name {
+    color: aliceblue;
+}
+.nav-link {
+    font-size: 0.75rem !important;
+    color: aliceblue !important;
+}
+.nav-link:hover {
+    border-radius: 0.375rem;
+    background-color: rgb(87, 120, 175);
+}
+.sbm {
+    font-size: 0.75rem;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    margin: 5px;
+}
+.si:hover {
+    border-radius: 0.375rem;
+    background-color: rgb(87, 120, 175);
+}
+.ca {
+    background-color: rgb(26, 73, 160);
+    padding: 10px;
+    border-radius: 0.375rem;
+}
+.ca:hover {
+    background-color: rgb(66, 96, 152);
+    padding: 10px;
+    border-radius: 0.375rem;
+}
+.title {
+    font-size: 14px;
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+}
+.tl2 {
+    max-width: 24px;
+    text-align: center;
+}
+
+.tl3 {
+    color: rgb(255, 255, 255);
+}
+.text_bt {
+    font-size: 12px;
+    font-family: Inter, sans-serif;
+    text-align: center;
+}
+.active {
+    border-radius: 0.375rem;
+    background-color: rgb(87, 120, 175);
+}
+/*----------------------SlideNav------------------------*/
+.photo {
+    max-width: 70%;
+
+    max-width: 80%;
+    height: auto;
+    margin: 10px 10%;
+    border-radius: 3px;
+}
+.label {
+    display: inline;
+}
+.icon {
+    float: left;
+}
+.count {
+    float: right;
+}
+/*--------------------------------------------------Header--------------------------------*/
+
+.tool {
+    width: 21%;
+    float: left;
+}
+.train_1 {
+    border: 2px solid rgb(18, 43, 82);
+    border-radius: 5px;
+    margin: 20px 0;
+    box-shadow: 5px 5px 10px 2px rgba(1, 1, 20, 0.4);
+}
+.layout_img {
+    max-width: 100%;
+    text-align: center;
+}
+.img_sample {
+    list-style: none;
+    padding: 0 !important;
+    margin: 5px auto;
+}
+.s_img {
+    width: 20%;
+    display: inline;
+    border: 1px solid rgba(59, 130, 246, 0.5);
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.result {
+    width: 70%;
+}
+
+.train_2 {
+    width: 80%;
+    height: auto;
+    border: 2px dashed #ccc;
+    margin: 10px auto;
+    padding: 20px 10px;
+}
+
+input {
+    margin-top: 1rem;
+}
+
+input::file-selector-button {
+    font-weight: bold;
+    color: rgb(68, 68, 68);
+    padding: 0.5em;
+    border: thin solid grey;
+    border-radius: 3px;
+}
+input[type='submit'] {
+    background-color: rgb(18, 43, 82);
+    border-radius: 3px;
+}
+input[type='submit']:hover {
+    background-color: rgb(66, 96, 152);
+    border-radius: 0.375rem;
+}
+/*---------------------------------Xử lý dữ liệu ảnh-------------------*/
+.bground {
+    max-width: 100%;
+    padding: 0;
+    height: auto;
+}
+.process_img {
+    width: 50%;
+    overflow-y: scroll;
+    height: 650px;
+    background-color: rgb(255, 255, 255);
+    float: left;
+    border: 2px solid rgb(18, 43, 82);
+    box-shadow: 5px 5px 10px 2px rgba(1, 1, 20, 0.4);
+    border-radius: 3px;
+}
+
+#img_prc {
+    max-width: 80%;
+    height: auto;
+    margin: 10px 10%;
+}
+
+#displayedImage {
+    max-width: 80%;
+    height: auto;
+    margin: 10px 10%;
+}
+/*---------------------Input Link-------------------*/
+.input-link {
+    max-width: 90%;
+    height: auto;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 12px;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa-link {
+    margin-left: 10px;
+}
+.input_file {
+    text-align: center;
+    padding: 4px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin: 7px;
+}
+.input_file:hover {
+    background-color: #9290c3;
+    color: aliceblue;
+    text-align: center;
+    padding: 4px;
+    border: 2px solid #9290c3;
+    border-radius: 5px;
+    margin: 7px;
+}
+.frame_i {
+    width: 100%;
+    height: 25px;
+    text-align: center;
+}
+.form_url {
+    text-align: center; /* Canh giữa các phần tử trong form */
+}
+
+.centered-elements {
+    justify-content: center;
+    align-items: center;
+}
+
+.smI {
+    background-color: #535c91;
+    color: aliceblue;
+    font-size: 12px;
+    font-family: Inter, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+    padding: 10px;
+    border: 0;
+    border-radius: 5px;
+}
+.smI:hover {
+    background-color: #9290c3;
+}
+/*---------------------------------Trả về KQ dữ liệu ảnh-------------------*/
+.result {
+    width: 21%;
+    float: left;
+}
+.text-xs {
+    margin-bottom: 50px;
+}
+.text-xs {
+    width: 20px;
+    font-size: 12px;
+    line-height: 1rem;
+    display: inline;
+}
+.gap-2 {
+    text-align: center;
+    margin: 10px;
+}
+#confidenceSlider {
+    margin-top: 0;
+}
+/*---------------------CSS FOOTER--------------*/
+.ct-ft {
+    color: #ccc;
+    background-color: rgb(18, 43, 82);
+}
+.container-ft {
+    margin-top: 50px;
+}
+.ftx {
+    padding: 20px;
+    text-align: center;
+}
+.ft-text-center {
+    text-align: center;
+    color: #ccc;
+    padding: 20px;
+    background-color: rgb(12, 29, 56) !important;
+}
+/*---------------------CSS Login--------------*/
+body {
+    height: 100vh;
+}
+.btn-md {
+    background-color: rgb(18, 43, 82);
+}
+.pt-51 {
+    color: rgb(18, 43, 82);
+}
+.text-info1 {
+    color: rgb(18, 43, 82);
+}
+.btn-info1 {
+    background-color: rgb(18, 43, 82);
+    color: #ccc;
+    padding: 10px;
+    border-radius: 0.375rem;
+}
+#uploadSubmit {
+    background-color: #535c91;
+    border-radius: 0.375rem;
+}
+#uploadSubmit:hover {
+    background-color: #9290c3;
+    border-radius: 0.375rem;
+}
+
+.btn-info1:hover {
+    background-color: rgb(66, 96, 152);
+    padding: 10px;
+    border-radius: 0.375rem;
+}
+.flash_mess {
+    font-weight: 700;
+    color: crimson;
+
+    margin-top: 10px;
+}
+
+#login .container #login-row #login-column #login-box {
+    margin-top: 120px;
+    max-width: 800px;
+    height: 320px;
+    border: 1px solid #9c9c9c;
+    background-color: #eaeaea;
+}
+#login .container #login-row #login-column #login-box #login-form {
+    padding: 20px;
+}
+#login
+    .container
+    #login-row
+    #login-column
+    #login-box
+    #login-form
+    #register-link {
+    margin-top: -85px;
+}
+.text-right1 {
+    float: right;
+    margin-top: 10px;
+}
+.confix-margin {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+#img_user_log {
+    width: 40px;
+
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border: 2px outset #ffffff;
+}
+/*----------------USER---------------*/
+.name_user_log {
+    color: #ffffff;
+    font-size: 10px !important;
+    font-weight: 600;
+    text-align: center;
+    font-family: sans-serif;
+    margin: 10px 0;
+}
+.user-box {
+    background-color: #535c91;
+    width: 11%;
+    position: relative;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 10px;
+
+    border: 2px dashed #000000;
+}
+
+.user-box img {
+    width: 40px;
+    float: left;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border: 2px outset #ffffff;
+    cursor: pointer;
+}
+
+.user-box .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 100px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 5;
+    animation: jumpDown 1s forwards;
+}
+
+.user-box .dropdown-content a {
+    display: block;
+    padding: 10px 40px;
+    text-decoration: none;
+    color: #333;
+}
+
+.user-box .dropdown-content a:hover {
+    background-color: #c4c3c3;
+    border-radius: 10px;
+}
+
+@keyframes jumpDown {
+    0% {
+        transform: translateY(0); /* Trạng thái ban đầu, không di chuyển */
+    }
+    50% {
+        transform: translateY(12px); /* Di chuyển xuống 200px */
+    }
+    100% {
+        transform: translateY(12px); /* Dừng lại ở vị trí xuống 200px */
+    }
+}
+
+.account-dropdown {
+    background-color: #070f2b;
+    position: relative;
+    width: 180px;
+    height: 100%;
+}
+
+.account-dropdown:hover {
+    background-color: #122b52;
+}
+.account-dropdown .nav__text a:hover {
+    text-decoration: none;
+}
+
+.dropdown-content {
+    position: absolute;
+    width: 180px;
+    background-color: #ffffff;
+    min-width: 100px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+    border: 1px solid black;
+}
+
+.account-dropdown:hover .dropdown-content {
+    opacity: 1; /* Khi hover, hiển thị dropdown */
+    visibility: visible; /* Hiển thị dropdown */
+}
+
+.dropdown-content a {
+    display: block;
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background-color: #122b52;
+    color: white;
+    text-decoration: none;
+}
+#myProgress {
+    width: 100%;
+    background-color: #ddd;
+}
+
+#myBar {
+    width: 10%;
+    height: 30px;
+    background-color: #04aa6d;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+}
+table {
+    border: 2px solid red;
+}
+th {
+    border: 5px dotted black;
+}
+td {
+    border: 1px dashed blue;
+}
+.details_del {
+    float: right;
+}

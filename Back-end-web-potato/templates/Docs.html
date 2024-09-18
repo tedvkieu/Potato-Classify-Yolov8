@@ -1,0 +1,201 @@
+<!--{% extends "MainBase.html" %} {% block title %} DOCS {% endblock %} {% block-->
+<!--content %}-->
+<!--<h1>DOCS</h1>-->
+<!--{% endblock %}-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename = 'css/home.css') }}" />
+        <title>Homepage</title>
+    </head>
+    <body>
+        {% if session %}
+        <div class="pt"><pre>{{pretty}}</pre></div>
+
+        <div id="wrapper">
+            <div class="container-fluid home-hero">
+                <div class="navbar-logo-left">
+                    <div class="nav__default">
+                        <a href="">
+                            <img
+                                src="{{url_for('static', filename = 'image/logo.png')}}"
+                                alt="Roboflow"
+                                width="pz"
+                                height="192"
+                                class="nav__logo" />
+                        </a>
+                        <div class="nav__main">
+                            <div class="nav__touch w-drop-downdown">
+                                <div class="nav__text">
+                                    <a href="/classification">Classfication</a>
+                                    <span
+                                        ><i class="fa-solid fa-chevron-down"></i
+                                    ></span>
+                                </div>
+                            </div>
+                            <div class="nav__touch w-drop-downdown">
+                                <div class="nav__text">
+                                    <a href="">YOLOv8</a>
+                                    <span
+                                        ><i class="fa-solid fa-chevron-down"></i
+                                    ></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nav__main__actions">
+                            <a
+                                href="{{url_for('logout')}}"
+                                class="rf-button-white outline-button mobile-hide">
+                                Logout
+                                <span
+                                    ><i class="fa-solid fa-arrow-right"></i
+                                ></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="home-hero-views">
+                    <div class="home-hero-section">
+                        <div class="hero-container">
+                            <div class="hero-split">
+                                <h1 class="hero-heading">
+                                    Classify shrimp types based on YOLOv8 model
+                                </h1>
+                                <p class="home-hero-subtext">
+                                    "Developed by students of Thuy Loi
+                                    University"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="home-hero-video">
+                        <video
+                            controls
+                            autoplay
+                            muted
+                            loop
+                            style="object-fit: cover">
+                            <source
+                                src="{{ url_for('static', filename='video/video1.mp4') }}"
+                                type="video/mp4" />
+                        </video>
+                    </div>
+                </div>
+
+                <div class="widget-button-container">
+                    <a
+                        href=""
+                        class="widget-button-home w-button"
+                        style="float: left; margin-left: 30px"
+                        >Try on Mobile</a
+                    >
+                </div>
+            </div>
+        </div>
+        <!--  -->
+        <div id="container content">
+            <div class="row introduce">
+                <div class="col-lg-4 col-md-4 col-xs-4 col-4 introduce-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="" />
+                    <h3>Classfication</h3>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-4 col-4 introduce-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1490718720478-364a07a997cd?q=80&w=1839&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="" />
+                    <h3>Identification</h3>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-4 col-4 introduce-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1551336631-7de698b111f8?q=80&w=1951&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="" />
+                    <h3>Counting</h3>
+                </div>
+            </div>
+        </div>
+        <!--  -->
+        <div id="footer"></div>
+        {% else %}
+        <section>
+            <div class="container n1">
+                <div class="form-box">
+                    <div class="form-value">
+                        <form action="">
+                            <h2 style="color: white; margin-top: 10px">
+                                Login
+                            </h2>
+                            <div class="inputbox">
+                                <ion-icon name="mail-outline"></ion-icon>
+                                <input type="email" />
+                                <label for="">Email</label>
+                            </div>
+                            <div class="inputbox">
+                                <ion-icon name="lock-closed-outline"></ion-icon>
+                                <input type="password" />
+                                <label for="">Password</label>
+                            </div>
+                            <div class="forget">
+                                <label for=""
+                                    ><input type="checkbox" />Remember Me
+                                    <a href="#">Forget Password</a></label
+                                >
+                            </div>
+                            <button>Log in</button>
+                            <div class="or">
+                                <hr class="my-2.5" />
+                                <p>or</p>
+                                <hr class="my-2.5" />
+                            </div>
+                            <div class="n5">
+                                <a href="{{url_for('googleLogin')}}">
+                                    <button class="n6">
+                                        <ion-icon
+                                            class="icgg"
+                                            name="logo-google"></ion-icon>
+                                        <span
+                                            style="
+                                                margin-top: 5px;
+                                                color: #0c2d57;
+                                            "
+                                            >Continue with Google</span
+                                        >
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="register">
+                                <p>
+                                    Don't have a account
+                                    <a href="/register">Register</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+        <script
+            type="module"
+            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script
+            nomodule
+            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    </body>
+</html>

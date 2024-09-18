@@ -1,0 +1,16 @@
+description: Ultralytics best1686 model trained on /kaggle/working/mydataset.yaml
+author: Ultralytics
+date: '2024-03-28T03:25:36.100095'
+version: 8.1.35
+license: AGPL-3.0 License (https://ultralytics.com/license)
+docs: https://docs.ultralytics.com
+stride: 32
+task: detect
+batch: 1
+imgsz:
+- 640
+- 640
+names:
+  0: BigShrimp
+  1: MediumShrimp
+  2: SmallShrimp

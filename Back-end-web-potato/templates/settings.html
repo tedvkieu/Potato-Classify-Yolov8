@@ -1,0 +1,156 @@
+{% extends "MainBase.html" %}
+{% block css %}<link rel="stylesheet"
+            href="{{ url_for('static', filename= '/css/mainBase.css') }}">
+<link rel="stylesheet"
+            href="{{ url_for('static', filename= '/css/settings.css') }}">
+
+{% endblock %}
+{% block title %} Setting {% endblock %}
+{% block content %}
+ <div class="container light-style flex-grow-1 container-p-y">
+        <h4 class="font-weight-bold py-3 mb-4 t2">
+            Account settings
+        </h4>
+        <div class="card overflow-hidden">
+            <div class="row no-gutters row-bordered row-border-light">
+                <div class="col-md-3 pt-0">
+                    <div class="list-group list-group-flush account-settings-links">
+                        <a class="list-group-item list-group-item-action active" data-toggle="list"
+                            href="#account-general">General</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list"
+                            href="#account-change-password">Change password</a>
+
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content">
+                        <div class="tab-pane fade active show" id="account-general">
+                             <form method="post" action="/change-username" enctype="multipart/form-data" >
+                            <div class="card-body media align-items-center">
+                                <img src="{{ session[2] }}" alt
+                                    class="d-block ui-w-80">
+
+                                <div class="media-body ml-4">
+                                    <input type="text" name="temp" value="{{ session[2] }}" hidden>
+                                    <label class="btn btn-outline-primary">
+                                        Upload new photo
+
+                                        <input type="file" class="account-settings-fileinput" name="current_avatar" accept=".jpg, .png, .mp4">
+                                    </label> &nbsp;
+
+                                </div>
+                            </div>
+                            <hr class="border-light m-0">
+
+                            <div class="card-body">
+
+                                <div class="form-group">
+                                    <label class="form-label">Username</label>
+                                    <input type="text" class="form-control mb-1" id="current_username" name="current_username" value="{{ session[1] }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label"  >E-mail</label>
+                                    <input type="text" class="form-control mb-1" id = "email_user"  value="{{ session[0] }}" readonly>
+                                </div>
+<button type="submit" class="btn btn-primary t1">Save changes</button>&nbsp;
+
+                            </div>
+                                  </form>
+                        </div>
+                        <div class="tab-pane fade" id="account-change-password">
+                              <form method="post" action="/change-password">
+                            <div class="card-body pb-2">
+
+                                <div class="form-group">
+                                    <label class="form-label">Current password</label>
+                                    <input type="password" class="form-control" id="current_password" name="current_password">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">New password</label>
+                                    <input type="password" class="form-control" id="new_password" name="new_password">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Repeat new password</label>
+                                    <input type="password" class="form-control" id="repeat_password" name="repeat_password" >
+                                </div>
+                                <button type="submit" class="btn btn-primary t1">Save changes</button>&nbsp;
+
+                            </div>
+                                   </form>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+<!--    <div class="container light-style flex-grow-1 container-p-y">-->
+<!--        <h4 class="font-weight-bold py-3 mb-4 t2">Account settings</h4>-->
+<!--        <div class="card overflow-hidden">-->
+<!--            <div class="row no-gutters row-bordered row-border-light">-->
+<!--                <div class="col-md-3 pt-0">-->
+<!--                    <div class="list-group list-group-flush account-settings-links">-->
+<!--                        <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">General</a>-->
+<!--                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">Change password</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-9">-->
+<!--                    <div class="tab-content">-->
+<!--                        <div class="tab-pane fade active show" id="account-general">-->
+<!--                            <div class="card-body media align-items-center">-->
+<!--                                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt class="d-block ui-w-80">-->
+<!--                            </div>-->
+<!--                            <hr class="border-light m-0">-->
+<!--                            <form method="post" action="{{ url_for('change_username') }}">-->
+<!--                                <label class="form-label">Username</label>-->
+<!--                                <input type="text" class="form-control mb-1" id="current_username" name="current_username" value="{{ session[1] }}">-->
+<!--                                <label class="form-label">Email</label>-->
+<!--                                <input  type="text" class="form-control mb-1" id = "email_user" value="{{ session[0] }}" readonly>-->
+<!--                                <button type="submit" class="btn btn-primary" style="margin: 20px 0px;">Save changes</button>-->
+<!--                            </form>-->
+<!--                        </div>-->
+<!--                        <div class="tab-pane fade" id="account-change-password">-->
+<!--                            <form method="post" action="{{ url_for('change_password') }}">-->
+<!--                                <input style = "display:none;" id = "email_user" type="text" class="form-control mb-1" value="{{ session[0] }}" readonly>-->
+<!--                                <div class="form-group">-->
+<!--                                    <label for="current_password">Current Password</label>-->
+<!--                                    <input type="password" class="form-control" id="current_password" name="current_password" required>-->
+<!--                                </div>-->
+<!--                                <div class="form-group">-->
+<!--                                    <label for="new_password">New Password</label>-->
+<!--                                    <input type="password" class="form-control" id="new_password" name="new_password" required>-->
+<!--                                </div>-->
+<!--                                <div class="form-group">-->
+<!--                                    <label for="repeat_password">Repeat New Password</label>-->
+<!--                                    <input type="password" class="form-control" id="repeat_password" name="repeat_password" required>-->
+<!--                                </div>-->
+<!--                                <button type="submit" class="btn btn-primary">Save changes</button>-->
+<!--                                <button type="button" class="btn btn-default t1" id="cancelBtn">Cancel</button>-->
+<!--                            </form>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+{% endblock %}
+{% block script %}
+    <script src="{{url_for('static', filename='js/change_pass.js')}}">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Add click event to Cancel button
+            $('#cancelBtn').click(function () {
+                // Show the General tab content
+                $('.tab-pane').removeClass('active show');
+                $('#account-general').addClass('active show');
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Bootstrap  -->
+        <link
+            rel="stylesheet"
+            href="{{url_for('static', filename='styles/style.css')}}" />
+        <link
+            rel="stylesheet"
+            href="{{url_for('static', filename='font/font-awesome/css/font-awesome.min.css')}}" />
+        <link
+            rel="stylesheet"
+            href="{{url_for('static', filename='styles/bootstrap/css/bootstrap.min.css')}}" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"
+            integrity="sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn"
+            crossorigin="anonymous"></script>
+
+        <!-- CSS -->
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename= '/css/classification.css') }}" />
+        <title>{% block title %} Base {% endblock %}</title>
+    </head>
+</html>
+<body>
+    <!-- Main wrapper -->
+    <div class="container-fluid home-hero">
+        <div class="navbar-logo-left">
+            <div class="nav__default">
+                <a href="/">
+                    <img
+                        src="{{url_for('static', filename = 'image/logo.png')}}"
+                        alt="Roboflow"
+                        width="pz"
+                        height="192"
+                        class="nav__logo" />
+                </a>
+                <div class="nav__main">
+                    <div class="nav__touch w-drop-downdown">
+                        <div class="nav__text">
+                            <a href="/classification">Classfication</a>
+                            <span
+                                ><i
+                                    class="fa fa-chevron-down"
+                                    aria-hidden="true"></i
+                            ></span>
+                        </div>
+                    </div>
+                    <div class="nav__touch w-drop-downdown">
+                        <div class="nav__text">
+                            <a href="/">YOLOv8</a>
+                            <span
+                                ><i
+                                    class="fa fa-chevron-down"
+                                    aria-hidden="true"></i
+                            ></span>
+                        </div>
+                    </div>
+                </div>
+                <!--                                         -->
+                <!-- <div class="user-box" id="userBox">
+                    <img
+                        src="{{ session[2] }}"
+                        id="img_user_log"
+                        alt="no found" />
+                    <p class="name_user_log" >{{ session[1] }}</p>
+                    <div class="dropdown-content" id="dropdownContent">
+                        <a href="/settings">Settings</a>
+                        <a href="/logout">Log out</a>
+                    </div>
+                </div> -->
+                <div class="nav__touch w-drop-downdown account-dropdown">
+                    <div class="nav__text">
+                        <a href="#">{{ session[1] }}</a>
+                        <span
+                            ><i
+                                class="fa fa-chevron-down"
+                                aria-hidden="true"></i
+                        ></span>
+                    </div>
+                    <div class="dropdown-content">
+                        <a href="/settings">Settings</a>
+                        <a href="/logout">Log out</a>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    {% block content %} {% endblock %}
+    <!-- Scripts -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+</body>

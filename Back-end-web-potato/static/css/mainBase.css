@@ -1,0 +1,43 @@
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff !important;
+
+}
+
+
+.navbar {
+    background-color: #ffffff !important;
+}
+.navbar-branch img {
+    height: 110px;
+}
+.navbar li a:hover {
+color:gray !important;
+box-shadow: 0 2px black;
+}
+
+.navbar li a {
+    text-align: justify;
+    color: black !important;
+    /* margin: 13px; */
+    /* margin: 5%; */
+    font-size: 21px !important;
+    font-family: Didot;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 370;
+    line-height: 27.5px;
+
+}
+.navbar-toggler-icon  {
+    justify-content : end !important;
+}
+.h2 {
+    padding-right: 0px !important;
+     padding-left: 0px !important;
+     margin: 0px !important ;
+     height: auto !important;
+
+
+}

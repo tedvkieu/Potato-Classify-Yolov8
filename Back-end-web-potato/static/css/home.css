@@ -1,0 +1,160 @@
+
+
+/* home */
+@import url('https://fonts.google.com/specimen/Playfair+Display');
+@font-face {
+    font-family: Playfair Display;
+    src: url('') format('truetype');
+}
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff !important;
+
+}
+
+
+.navbar {
+    background-color: #ffffff !important;
+}
+.navbar-branch img {
+    height: 110px;
+}
+.navbar li a:hover {
+color:gray !important;
+box-shadow: 0 2px black;
+}
+
+.navbar li a {
+    text-align: justify;
+    color: black !important;
+    /* margin: 13px; */
+    /* margin: 5%; */
+    font-size: 21px;
+    font-family: Didot;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 370;
+    line-height: 27.5px;
+
+}
+.navbar-toggler-icon  {
+    justify-content : end !important;
+}
+.h2 {
+    padding-right: 0px !important;
+     padding-left: 0px !important;
+     margin: 0px !important ;
+     height: auto !important;
+
+
+}
+
+.bg-light {
+    background-color: #fff !important;
+}
+.h1 {
+    padding-right: 0px !important;
+     padding-left: 0px !important ;
+     height: 60% !important;
+}
+.h2 {
+    padding-right: 0px !important;
+     padding-left: 0px !important;
+     margin: 0px !important ;
+     height: auto !important;
+
+
+}
+.slide-child img {
+    transition: transform 2s;
+    width: 100%;
+    height: 100%;
+    display: block;
+
+
+}
+.slide-child:hover img {
+    transform: scale(1.1);
+
+}
+.slide-child:hover {
+    opacity: 1;
+}
+
+
+.slide-child {
+    height: 90%;
+    /* overflow-y: hidden;
+    overflow-x: visible; */
+    position: relative;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    overflow: hidden;
+}
+
+.title{
+    position: absolute;
+    top: 50%; /* Đặt vị trí theo chiều dọc */
+    left: 50%; /* Đặt vị trí theo chiều ngang */
+    transform: translate(-70%, -30%); /* Dịch chuyển để căn giữa */
+    text-align:left; /* Căn giữa nội dung */
+    color: white; /* Màu chữ */
+
+    /* padding: 20px;  */
+    /* background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5));   */
+}
+.title h4 {
+    font-size: 35px;
+    font-family: Didot;
+    font-style:inherit;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 27.5px;
+}
+
+.h3 {
+    margin-top: 30px;
+    height: 1000%;
+    width: 100%;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+}
+.h6 img {
+    width: 100%;
+}
+.pic1 {
+    width: 100%;
+}
+.pic1 img {
+    width: 100%;
+}
+.pic2 {
+   padding: 0px !important;
+    width: 100%;
+}
+.pic2 img {
+    width: 100%;
+}
+.pic3 {
+    padding: 0px !important;
+     width: 100%;
+ }
+ .pic3 img {
+     width: 100%;
+ }
+.h4 {
+    margin-bottom: 30px;
+}
+/* font chữ thui */
+/* h2 {
+    font-family: Playfair Display;
+    font-size: 30px;
+
+} */
+h5 {
+    font-family: Playfair Display;
+}
+p {
+    font-family: Playfair Display;
+}

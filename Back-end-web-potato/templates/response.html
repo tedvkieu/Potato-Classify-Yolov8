@@ -1,0 +1,8 @@
+<p><b>{{ msg }}</b></p>
+<div style="text-align: center">
+    {% for filename in filenames %}
+
+    <img width="90%" src="/static/yolov8/{{ filename }}" />
+
+    {% endfor %}
+</div>
