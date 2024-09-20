@@ -298,6 +298,29 @@ def video_feed(subpath):
 def serve_result(filename):
     return send_from_directory(RESULT_FOLDER, filename)
 
+@app.route('/get-all-history', methods=['GET'])
+def get_history():
+    cur = mysql.connection.cursor()
+    sql = "SELECT * FROM history"
+    cur.execute(sql)
+    results = cur.fetchall()
+    cur.close()
+    
+    if results:
+        history_records = []
+        for row in results:
+            record = {
+                'id': row[0],  
+                'potato_img': row[1], 
+                'potato_kind': row[2],
+                'time': row[3]
+            }
+            history_records.append(record)
+        return jsonify(history_records)
+    else:
+        return "History is Blank"
+    
+
 @app.route('/classify', methods=['POST'])
 def upload_file():
     
@@ -330,17 +353,13 @@ def upload_file():
                 if len(results) > 0:
                     dictObject, save_name = model.count_object(results, app.config['UPLOAD_FOLDER'], result_img)
                     files_detected.append(save_name)
-                    results_pre_temp.append(next(iter(dictObject.keys())))
-                    print("check salename: ", save_name)
-                    print("check result: ",results_pre_temp)
-                    current_time = datetime.now()
-                    cur = mysql.connection.cursor()
-                    # cur.execute(f"""INSERT INTO history (potato_image,potato_kind, c_time) 
-                    #                 VALUES ('{save_name}','{results_pre_temp}','{current_time}')""")
-                    sql = "INSERT INTO history (potato_img, potato_kind, c_time) VALUES (%s, %s, %s)"
-                    cur.execute(sql, (save_name, results_pre_temp, current_time))
-                    mysql.connection.commit()
-                    cur.close()
+                    for kind in dictObject.keys():
+                        current_time = datetime.now()
+                        cur = mysql.connection.cursor()
+                        sql = "INSERT INTO history (potato_img, potato_kind, c_time) VALUES (%s, %s, %s)"
+                        cur.execute(sql, (save_name, kind, current_time))
+                        mysql.connection.commit()
+                        cur.close()
                     
         base_url = request.host_url.rstrip('/')
         files_detected_urls = [f"{base_url}/upload/yolov8/{file}" for file in files_detected]

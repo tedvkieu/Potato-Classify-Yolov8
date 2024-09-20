@@ -86,6 +86,11 @@ const submitImageClassify = (image) => {
     return axios.post('/classify', formData);
 };
 
+
+const getAllHistory = () => {
+    return axios.get('/get-all-history');
+}
+
 export {
     postCreateNewUser,
     getAllUsers,
@@ -100,4 +105,5 @@ export {
     postCreateNewQuiz,
     getAllQuizForAdmin,
     submitImageClassify,
+    getAllHistory,
 };

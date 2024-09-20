@@ -87,6 +87,7 @@ body {
                         }
                     }
                     .bar-content {
+                        cursor: pointer;
                         margin-top: 20px;
                         .item-option {
                             width: 60%;
@@ -119,23 +120,100 @@ body {
             }
             .sl-center {
                 width: 80%;
+                height: 570px;
 
-                .preview-image-potato {
-                    display: flex;
-                    justify-content: flex-start; /* Căn tất cả các ảnh về phía đầu */
-                    gap: 30px;
-                    padding: 15px 0;
+                .home-content {
+                    .preview-image-potato {
+                        display: flex;
+                        justify-content: flex-start; /* Căn tất cả các ảnh về phía đầu */
+                        gap: 30px;
+                        padding: 15px 0;
 
-                    .potato-preview {
-                        width: 150px;
-                        height: 150px;
-                        object-fit: cover;
-                        border: 1px solid #ccc;
-                        border-radius: 5px;
+                        .potato-preview {
+                            width: 150px;
+                            height: 150px;
+                            object-fit: cover;
+                            border: 1px solid #ccc;
+                            border-radius: 5px;
+                        }
+                    }
+
+                    .upload-img {
+                        .info-text {
+                            margin-top: 20px;
+                            margin-left: 30px;
+                            .title {
+                                color: white;
+                            }
+                            a {
+                                text-decoration: none;
+                                color: rgba(0, 255, 206, 1);
+                            }
+                        }
+
+                        .main-content {
+                            width: 100%;
+                            height: 300px;
+                            display: flex;
+                            margin-top: 15px;
+                            .upload-left {
+                                width: 70%;
+                                border-radius: 0.5rem;
+
+                                border: 1px solid rgba(229, 231, 235, 0.5);
+
+                                .label-upload {
+                                    margin-left: 30px;
+                                    padding: 10px;
+                                }
+                                .img-preview {
+                                    margin: 0 auto;
+                                    width: 350px;
+                                    --tw-bg-opacity: 1;
+                                    background-color: rgba(
+                                        31,
+                                        41,
+                                        55,
+                                        var(--tw-bg-opacity)
+                                    );
+                                    height: 150px;
+                                    border: 1px dashed #ccc;
+                                    border-radius: 5px;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    color: #ccc;
+
+                                    img {
+                                        max-width: 100%;
+                                        max-height: 100%;
+                                        margin: 0 auto;
+                                    }
+                                }
+                            }
+                            .upload-right {
+                                width: 30%;
+                                margin-left: 30px;
+
+                                .tile {
+                                    width: 100%;
+                                    height: 47%;
+                                    border-radius: 0.5rem;
+                                    border: 1px solid rgba(229, 231, 235, 0.5);
+                                    margin-bottom: 20px;
+                                }
+                                .blank {
+                                    width: 100%;
+                                    height: 47%;
+                                    border-radius: 0.5rem;
+                                    border: 1px solid rgba(229, 231, 235, 0.5);
+                                }
+                            }
+                        }
                     }
                 }
 
-                .upload-img {
+                .home-history {
                     .info-text {
                         margin-top: 20px;
                         margin-left: 30px;
@@ -147,65 +225,19 @@ body {
                             color: rgba(0, 255, 206, 1);
                         }
                     }
-
-                    .main-content {
-                        width: 100%;
-                        height: 300px;
-                        display: flex;
-                        margin-top: 15px;
-                        .upload-left {
-                            width: 70%;
-                            border-radius: 0.5rem;
-
-                            border: 1px solid rgba(229, 231, 235, 0.5);
-
-                            .label-upload {
-                                margin-left: 30px;
-                                padding: 10px;
-                            }
-                            .img-preview {
-                                margin: 0 auto;
-                                width: 350px;
-                                --tw-bg-opacity: 1;
-                                background-color: rgba(
-                                    31,
-                                    41,
-                                    55,
-                                    var(--tw-bg-opacity)
-                                );
-                                height: 150px;
-                                border: 1px dashed #ccc;
-                                border-radius: 5px;
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                                color: #ccc;
-
-                                img {
-                                    max-width: 100%;
-                                    max-height: 100%;
-                                    margin: 0 auto;
-                                }
-                            }
-                        }
-                        .upload-right {
-                            width: 30%;
-                            margin-left: 30px;
-
-                            .tile {
-                                width: 100%;
-                                height: 47%;
-                                border-radius: 0.5rem;
-                                border: 1px solid rgba(229, 231, 235, 0.5);
-                                margin-bottom: 20px;
-                            }
-                            .blank {
-                                width: 100%;
-                                height: 47%;
-                                border-radius: 0.5rem;
-                                border: 1px solid rgba(229, 231, 235, 0.5);
-                            }
-                        }
+                    img {
+                        width: 100px;
+                    }
+                    .button-edit {
+                        gap: 10px;
+                    }
+                    th,
+                    td {
+                        font-size: 13px;
+                        color: white;
+                    }
+                    .custom-margin {
+                        margin-right: 10px;
                     }
                 }
             }
@@ -227,26 +259,6 @@ body {
                 color: #ccc;
             }
         }
-    }
-}
-.img-preview-detect {
-    margin: 0 auto;
-    width: 350px;
-    --tw-bg-opacity: 1;
-    background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
-    height: 150px;
-    border: 1px dashed #ccc;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #ccc;
-
-    img {
-        max-width: 100%;
-        max-height: 100%;
-        margin: 0 auto;
-        padding: 2px;
     }
 }
 

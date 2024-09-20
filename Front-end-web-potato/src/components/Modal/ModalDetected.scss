@@ -1,0 +1,30 @@
+.modal-content {
+    background-color: rgba(17, 24, 39);
+    .modal-header {
+        .modal-title {
+            color: white;
+        }
+    }
+}
+
+.img-preview-detect {
+    margin: 0 auto;
+    width: 100%; // Để ảnh chiếm toàn bộ chiều ngang của container
+    max-width: 600px; // Giới hạn chiều rộng của container nếu cần
+    background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
+    height: auto; // Chiều cao sẽ thay đổi dựa trên số lượng ảnh
+    border: 1px dashed #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center; // Căn giữa các ảnh theo chiều ngang
+    align-items: center; // Căn giữa các ảnh theo chiều dọc
+    gap: 10px; // Khoảng cách giữa các ảnh
+    padding: 10px;
+    flex-wrap: wrap; // Khi có nhiều hơn 3 ảnh, các ảnh sẽ xuống hàng
+
+    img {
+        max-width: 30%; // Ảnh chiếm tối đa 30% chiều rộng của container
+        max-height: 30%; // Giới hạn chiều cao của ảnh
+        object-fit: cover; // Đảm bảo ảnh không bị méo
+    }
+}
