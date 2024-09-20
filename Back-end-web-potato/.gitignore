@@ -4,3 +4,4 @@ static/image/img_process/
 static/yolov8
 __pycache__/
 client_secret.json
+/upload

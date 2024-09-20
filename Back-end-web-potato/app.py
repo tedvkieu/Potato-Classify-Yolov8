@@ -33,8 +33,9 @@ app.config['UPLOAD_FOLDER'] = "static"
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = '12345678'
-app.config['MYSQL_DB'] = 'yolov8shrimp'
+app.config['MYSQL_DB'] = 'potatoyolov8'
 mysql = MySQL(app)
+
 
 model = my_YoloV8.YOLOv8_ObjectCounter(model_file="best.pt")
 
@@ -66,51 +67,14 @@ if not os.path.exists(UPLOAD_FOLDER):
 
 @app.route("/")
 def home():   
-    if (session):
-        CS = mysql.connection.cursor()
-        CS.execute(f"""SELECT * FROM user where email='{session["user"]["email"]}'""")
-        Executed_DATA = CS.fetchall()
-        print("Executed_DATA",session["provider"])
-        if (Executed_DATA):
-            return render_template("home.html", session=Executed_DATA)
-        elif(session["provider"] == "Google"):
-            CS.execute(
-                f"""INSERT INTO user VALUES ('{session["user"]["email"]}','{session["user"]["name"]}','{session["user"]["picture"]}','{session["user"]["picture"]}+{session["user"]["email"]}')""")
-            # CS.execute('''INSERT INTO TABLE_NAME VALUES (2, 'Arthor')''')
-            mysql.connection.commit()
-            CS.execute(f"""SELECT * FROM user where email='{session["user"]["email"]}'""")
-            Executed_DATA = CS.fetchall()
-            return render_template("home.html", session=Executed_DATA
-                               )
-    else:
-        print("no")
-        return render_template("home.html", session="")
+    return "hihi"
+
     
 @app.route('/uploadImg')
 def upload_Img():
     return render_template('upImage.html')
     
     
-@app.route('/upload', methods=['POST'])
-def upload_files():
-    if 'images' not in request.files:
-        return jsonify({"error": "No files part in the request"}), 400
-
-    files = request.files.getlist('images')
-    
-    uploaded_filenames = []
-    
-    for file in files:
-        if file.filename == '':
-            return jsonify({"error": "Empty filename"}), 400
-        filename = file.filename
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        file.save(file_path)
-        uploaded_filenames.append(filename)
-    
-    return jsonify({"message": "Files uploaded successfully", "files": uploaded_filenames}), 200
-
-
 @app.route("/signin-google")
 def googleCallback():
     # fetch access token and id token using authorization code
@@ -328,12 +292,20 @@ def video_feed(subpath):
         return Response(generate(videoPath=subpath,CAP_DSHOWN=None,colors=color()),
                         mimetype="multipart/x-mixed-replace; boundary=frame")
         
+
+    
+@app.route('/upload/yolov8/<filename>')
+def serve_result(filename):
+    return send_from_directory(RESULT_FOLDER, filename)
+
 @app.route('/classify', methods=['POST'])
 def upload_file():
-    files_detected = []
+    
     if 'uploadFile[]' not in request.files:
         return jsonify({'success': False, 'message': 'No file part'}), 400
 
+    files_detected = []
+    results_pre_temp = []
     files = request.files.getlist('uploadFile[]')
 
     if not files:
@@ -358,6 +330,17 @@ def upload_file():
                 if len(results) > 0:
                     dictObject, save_name = model.count_object(results, app.config['UPLOAD_FOLDER'], result_img)
                     files_detected.append(save_name)
+                    results_pre_temp.append(next(iter(dictObject.keys())))
+                    print("check salename: ", save_name)
+                    print("check result: ",results_pre_temp)
+                    current_time = datetime.now()
+                    cur = mysql.connection.cursor()
+                    # cur.execute(f"""INSERT INTO history (potato_image,potato_kind, c_time) 
+                    #                 VALUES ('{save_name}','{results_pre_temp}','{current_time}')""")
+                    sql = "INSERT INTO history (potato_img, potato_kind, c_time) VALUES (%s, %s, %s)"
+                    cur.execute(sql, (save_name, results_pre_temp, current_time))
+                    mysql.connection.commit()
+                    cur.close()
                     
         base_url = request.host_url.rstrip('/')
         files_detected_urls = [f"{base_url}/upload/yolov8/{file}" for file in files_detected]
@@ -368,9 +351,7 @@ def upload_file():
         print(f"Error: {e}")
         return jsonify({'success': False, 'message': 'An error occurred'}), 500
     
-@app.route('/upload/yolov8/<filename>')
-def serve_result(filename):
-    return send_from_directory(RESULT_FOLDER, filename)
+    
 
 # @app.route('/classify', methods=['POST'])
 # def upload_file():
@@ -601,4 +582,3 @@ def random_color():
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=os.environ.get(
         "FLASK_PORT"), debug=True)
-

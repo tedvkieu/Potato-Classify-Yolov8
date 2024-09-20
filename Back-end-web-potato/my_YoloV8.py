@@ -192,14 +192,14 @@ class YOLOv8_ObjectDetector:
         return img
     def count_object(self,results,path_save_result,result_img):
         dictObject = {}
-        dictObject["SumShrimp"] = 0
+        # dictObject["SumShrimp"] = 0
         for result in results:
             detection_count = result.boxes.shape[0]
             for i in range(detection_count):
                 cls = int(result.boxes.cls[i].item())
                 name = result.names[cls]
                 score = result.boxes.conf[i].item()*100
-                dictObject["SumShrimp"] += 1
+                # dictObject["SumShrimp"] += 1
                 if name in dictObject:
                     dictObject[name]+=1
 
