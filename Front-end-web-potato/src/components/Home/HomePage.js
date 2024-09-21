@@ -72,11 +72,12 @@ const HomePage = (props) => {
                         />
                     )}
                     {activeIndex === 1 && <HomeHistory />}
- 
+
                     <ModalDetected
                         show={show}
                         setShow={setShow}
                         previewImgDetect={previewImgDetect}
+                        responseInfo={responseInfo}
                     />
                 </div>
             </div>

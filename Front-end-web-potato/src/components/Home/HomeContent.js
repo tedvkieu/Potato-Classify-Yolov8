@@ -5,7 +5,7 @@ const HomeContent = (props) => {
     const { previewImg, handleSubmit, handleUploadImage } = props;
 
     return (
-        <div className ="home-content">
+        <div className="home-content">
             <div className="preview-image-potato">
                 <img
                     className="potato-preview"
@@ -50,7 +50,7 @@ const HomeContent = (props) => {
                                 className="form-label label-upload"
                                 htmlFor="labelUpload">
                                 <FcPlus />
-                                Upload File Images
+                                <span className ="text-up pl-2">Upload File Images</span>
                             </label>
                             <input
                                 id="labelUpload"
@@ -70,9 +70,7 @@ const HomeContent = (props) => {
                                         src={img}
                                         alt={`Preview ${index}`}
                                     />
-                                    
                                 ))
-                                
                             ) : (
                                 <span>Preview Images</span>
                             )}
@@ -80,15 +78,44 @@ const HomeContent = (props) => {
                         {
                             <button
                                 onClick={handleSubmit}
-                                className="btn btn-primary mx-3">
+                                className="btn btn-outline-success mx-3">
                                 Submit
                             </button>
                         }
                     </div>
 
                     <div className="upload-right">
-                        <div className="tile">hi</div>
-                        <div className="blank">hi</div>
+                        <div className="tile">
+                            Đinh Hồng Anh
+                            <img
+                                className="star-yl"
+                                src="https://cdn-icons-png.flaticon.com/512/276/276020.png"
+                            />
+                        </div>
+
+                        <div className="tile">
+                            Dương Văn Kiểu
+                            <img
+                                className="star-yl"
+                                src="https://cdn-icons-png.flaticon.com/512/276/276020.png"
+                            />
+                            <img
+                                className="star-yl"
+                                src="https://cdn-icons-png.flaticon.com/512/276/276020.png"
+                            />
+                            <img
+                                className="star-yl"
+                                src="https://cdn-icons-png.flaticon.com/512/276/276020.png"
+                            />
+                            <img
+                                className="star-yl"
+                                src="https://cdn-icons-png.flaticon.com/512/276/276020.png"
+                            />
+                            <img
+                                className="star-yl"
+                                src="https://cdn-icons-png.flaticon.com/512/276/276020.png"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

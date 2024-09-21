@@ -5,26 +5,100 @@
             color: white;
         }
     }
+
+    .modal-body {
+        .img-preview-detect {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+            background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
+            height: auto;
+            border: 1px dashed #ccc;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            flex-wrap: wrap;
+            img {
+                max-width: 30%;
+                max-height: 30%;
+                object-fit: cover;
+
+                border: 1px solid rgba(255, 255, 255, 0.61);
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+            }
+            .text-time {
+                color: white;
+            }
+        }
+        .text-disease {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+
+            .title {
+                color: white;
+                font-weight: 600;
+            }
+            p {
+                color: white;
+                font-size: 14px;
+                white-space: pre-line;
+                .highlight {
+                    color: red;
+                }
+            }
+        }
+
+        .info-disease {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            .quantity-text {
+                font-size: 14px;
+                color: white;
+            }
+            .row-result {
+                //border-top: 1px solid rgba(173, 173, 173, 0.23);
+                border-bottom: 1px solid rgba(173, 173, 173, 0.23);
+                span {
+                    font-size: 13px;
+                    color: white;
+                }
+            }
+        }
+
+        .text-disease.show {
+            opacity: 1;
+        }
+    }
+
+    .modal-footer {
+        .btn-show {
+            font-size: 13px;
+            margin-right: 15px;
+            cursor: pointer;
+            color: white;
+        }
+    }
 }
 
-.img-preview-detect {
-    margin: 0 auto;
-    width: 100%; // Để ảnh chiếm toàn bộ chiều ngang của container
-    max-width: 600px; // Giới hạn chiều rộng của container nếu cần
-    background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
-    height: auto; // Chiều cao sẽ thay đổi dựa trên số lượng ảnh
-    border: 1px dashed #ccc;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center; // Căn giữa các ảnh theo chiều ngang
-    align-items: center; // Căn giữa các ảnh theo chiều dọc
-    gap: 10px; // Khoảng cách giữa các ảnh
-    padding: 10px;
-    flex-wrap: wrap; // Khi có nhiều hơn 3 ảnh, các ảnh sẽ xuống hàng
-
-    img {
-        max-width: 30%; // Ảnh chiếm tối đa 30% chiều rộng của container
-        max-height: 30%; // Giới hạn chiều cao của ảnh
-        object-fit: cover; // Đảm bảo ảnh không bị méo
+@keyframes slideUp {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
     }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.text-disease.show {
+    animation: slideUp 0.5s ease-in-out;
 }

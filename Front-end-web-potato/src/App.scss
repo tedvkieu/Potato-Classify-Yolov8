@@ -49,7 +49,7 @@ body {
                 .menu-bar-content {
                     .img-detect {
                         display: flex;
-                        justify-content: flex-start; /* Căn tất cả các ảnh về phía đầu */
+                        justify-content: flex-start;
                         gap: 30px;
                         padding: 15px 0;
                         margin-left: 15px;
@@ -160,11 +160,19 @@ body {
                                 width: 70%;
                                 border-radius: 0.5rem;
 
-                                border: 1px solid rgba(229, 231, 235, 0.5);
+                                border: 1px solid rgba(128, 139, 162, 0.5);
 
                                 .label-upload {
                                     margin-left: 30px;
                                     padding: 10px;
+                                    color: white;
+                                    cursor: pointer;
+
+                                    .text-up {
+                                        font-size: 14px;
+                                        margin-left: 5px;
+                                        margin-top: 25px;
+                                    }
                                 }
                                 .img-preview {
                                     margin: 0 auto;
@@ -194,19 +202,27 @@ body {
                             .upload-right {
                                 width: 30%;
                                 margin-left: 30px;
+                                text-align: center;
+                                align-items: center;
+                                justify-content: center;
+                                display: flex;
+                                flex-direction: column;
+                                gap: 20px;
 
                                 .tile {
+                                    color: #ccc;
                                     width: 100%;
-                                    height: 47%;
+                                    height: 51%;
                                     border-radius: 0.5rem;
                                     border: 1px solid rgba(229, 231, 235, 0.5);
-                                    margin-bottom: 20px;
-                                }
-                                .blank {
-                                    width: 100%;
-                                    height: 47%;
-                                    border-radius: 0.5rem;
-                                    border: 1px solid rgba(229, 231, 235, 0.5);
+
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    img {
+                                        max-width: 10px;
+                                        margin-left: 10px;
+                                    }
                                 }
                             }
                         }
@@ -225,17 +241,24 @@ body {
                             color: rgba(0, 255, 206, 1);
                         }
                     }
+                    tbody {
+                        height: 428px;
+                    }
                     img {
-                        width: 100px;
+                        width: 90px;
                     }
                     .button-edit {
                         gap: 10px;
                     }
-                    th,
-                    td {
-                        font-size: 13px;
-                        color: white;
+                    tr {
+                        vertical-align: middle;
+                        th,
+                        td {
+                            font-size: 13px;
+                            color: white;
+                        }
                     }
+
                     .custom-margin {
                         margin-right: 10px;
                     }

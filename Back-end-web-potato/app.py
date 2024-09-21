@@ -318,7 +318,7 @@ def get_history():
             history_records.append(record)
         return jsonify(history_records)
     else:
-        return "History is Blank"
+        return jsonify({'state': 400,'error': "History Empty"})
     
 
 @app.route('/classify', methods=['POST'])
@@ -330,6 +330,7 @@ def upload_file():
     files_detected = []
     results_pre_temp = []
     files = request.files.getlist('uploadFile[]')
+    quantity = 0;
 
     if not files:
         return jsonify({'success': False, 'message': 'No selected file'}), 400
@@ -356,21 +357,65 @@ def upload_file():
                     for kind in dictObject.keys():
                         current_time = datetime.now()
                         cur = mysql.connection.cursor()
+                        results_pre_temp.append(kind)
+                        quantity +=1
                         sql = "INSERT INTO history (potato_img, potato_kind, c_time) VALUES (%s, %s, %s)"
                         cur.execute(sql, (save_name, kind, current_time))
                         mysql.connection.commit()
                         cur.close()
-                    
+        time = datetime.now()
+        print("check kind: ", results_pre_temp)
         base_url = request.host_url.rstrip('/')
         files_detected_urls = [f"{base_url}/upload/yolov8/{file}" for file in files_detected]
            
-        return jsonify({'success': True, 'message': 'Files processed successfully', 'files': files_detected_urls}), 200
+        return jsonify({'success': True, 'message': 'Files processed successfully','time': time, 'files': files_detected_urls, 'kind': results_pre_temp, 'quantity': quantity}), 200
 
     except Exception as e:
         print(f"Error: {e}")
         return jsonify({'success': False, 'message': 'An error occurred'}), 500
     
     
+@app.route('/get-history', methods=['GET'])
+def get_history_perpage():
+    # Lấy tham số trang và số lượng bản ghi trên mỗi trang từ request
+    page = request.args.get('page', 1, type=int)
+    per_page = request.args.get('per_page', 10, type=int)
+
+    cur = mysql.connection.cursor()
+
+    # Lấy tổng số bản ghi
+    cur.execute("SELECT COUNT(*) FROM history")
+    total_records = cur.fetchone()[0]
+
+    # Tính toán vị trí bắt đầu cho query
+    offset = (page - 1) * per_page
+
+    # Truy vấn bản ghi với phân trang
+    sql = "SELECT * FROM history LIMIT %s OFFSET %s"
+    cur.execute(sql, (per_page, offset))
+    results = cur.fetchall()
+    cur.close()
+
+    if results:
+        history_records = []
+        for row in results:
+            record = {
+                'id': row[0],  
+                'potato_img': row[1], 
+                'potato_kind': row[2],
+                'time': row[3]
+            }
+            history_records.append(record)
+
+        # Trả về kết quả cùng với thông tin phân trang
+        return jsonify({
+            'records': history_records,
+            'total': total_records,
+            'current_page': page,
+            'per_page': per_page
+        })
+    else:
+        return jsonify({'state': 400, 'error': "History Empty"})
 
 # @app.route('/classify', methods=['POST'])
 # def upload_file():

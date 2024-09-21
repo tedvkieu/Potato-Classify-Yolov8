@@ -86,10 +86,13 @@ const submitImageClassify = (image) => {
     return axios.post('/classify', formData);
 };
 
-
 const getAllHistory = () => {
     return axios.get('/get-all-history');
-}
+};
+
+const fetchDataPagination = (page, perPage) => {
+    return axios.get(`get-history?page=${page}&per_page=${perPage}`);
+};
 
 export {
     postCreateNewUser,
@@ -106,4 +109,5 @@ export {
     getAllQuizForAdmin,
     submitImageClassify,
     getAllHistory,
+    fetchDataPagination,
 };

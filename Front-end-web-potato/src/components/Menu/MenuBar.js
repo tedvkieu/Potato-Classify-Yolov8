@@ -9,7 +9,7 @@ const MenuBar = (props) => {
 
     const menuItems = [
         { icon: <FaBook />, text: 'Overview' },
-        { icon: <FaImage />, text: 'Images' },
+        { icon: <FaImage />, text: 'History' },
         { icon: <FaFolderOpen />, text: 'Dataset' },
         { icon: <IoIosRocket />, text: 'Model' },
         { icon: <IoCodeSlash />, text: 'API Docs' },
