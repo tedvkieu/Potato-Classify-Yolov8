@@ -298,6 +298,39 @@ def video_feed(subpath):
 def serve_result(filename):
     return send_from_directory(RESULT_FOLDER, filename)
 
+@app.route('/view-record/<int:image_id>', methods=['GET'])
+def view_a_record(image_id):
+    cur = mysql.connection.cursor()
+    sql = "SELECT * FROM history WHERE id = %s"
+    cur.execute(sql, (image_id,))
+    result = cur.fetchone()
+    cur.close()
+
+    if result:
+        image_details = {
+            'id': result[0],                
+            'potato_img': result[1],      
+            'potato_kind': result[2],     
+            'time': result[3]   
+        }
+        return jsonify(image_details)
+    else:
+        return jsonify({'error': 'Image not found'}), 404
+    
+@app.route('/delete-a-record/<int:image_id>', methods=['DELETE'])
+def delete_a_record(image_id):
+    cur = mysql.connection.cursor()
+    sql = "DELETE FROM history WHERE id = %s"
+    try:
+        cur.execute(sql, (image_id,))  # Thêm dấu phẩy sau image_id
+        mysql.connection.commit()
+        cur.close()
+        return jsonify({'message': 'Record deleted successfully'}), 200
+    except Exception as e:
+        cur.close()
+        return jsonify({'error': str(e)}), 500
+    
+    
 @app.route('/get-all-history', methods=['GET'])
 def get_history():
     cur = mysql.connection.cursor()
@@ -387,11 +420,15 @@ def get_history_perpage():
     cur.execute("SELECT COUNT(*) FROM history")
     total_records = cur.fetchone()[0]
 
-    # Tính toán vị trí bắt đầu cho query
+    # Tính toán vị trí bắt đầu cho query (offset)
     offset = (page - 1) * per_page
 
-    # Truy vấn bản ghi với phân trang
-    sql = "SELECT * FROM history LIMIT %s OFFSET %s"
+    # Đảm bảo offset không vượt quá tổng số bản ghi
+    if offset >= total_records:
+        offset = total_records - per_page if total_records >= per_page else 0
+
+    # Truy vấn bản ghi với phân trang từ dưới lên
+    sql = "SELECT * FROM history ORDER BY id DESC LIMIT %s OFFSET %s"
     cur.execute(sql, (per_page, offset))
     results = cur.fetchall()
     cur.close()
@@ -417,73 +454,7 @@ def get_history_perpage():
     else:
         return jsonify({'state': 400, 'error': "History Empty"})
 
-# @app.route('/classify', methods=['POST'])
-# def upload_file():
-#     print(request.files.getlist('uploadFile[]'))
-#     if 'uploadFile[]' not in request.files:
-#         return redirect(request.url)
-#     files = request.files.getlist('uploadFile[]')
-#     if files:
-#         file_names = []
-#         results_pre = []
-#         results_pre_temp = []
-#         results_dict = []
-#         is_video = False
-#         for file in files:
-#             if imghdr.what(file) and file and allowed_file(file.filename):
-#                 filename = secure_filename(file.filename)
-#                 path_save = os.path.join(app.config['UPLOAD_FOLDER'] + "/image/", filename)
-#                 file.save(path_save)
-#                 frame = cv2.imread(path_save)
-#                 results = model.predict_img(frame)
-#                 result_img = model.custom_display(colors=color())
-#                 msg = 'File predict successfully'
-#                 # print(file_names)
-#                 if len(results) > 0:
-#                     dictObject, save_name = model.count_object(results, app.config['UPLOAD_FOLDER'], result_img)
-#                     results_pre_temp.append(dictObject)
 
-#                     file_names.append(save_name)
-#             else:
-#                 is_video = True
-#                 path_save = os.path.join(app.config['UPLOAD_FOLDER'] + "/image/img_process/", file.filename)
-#                 file.save(path_save)
-#                 msg = 'File predict successfully'
-#                 file_names.append(path_save)
-#         results_dict.extend(results_pre_temp)
-#         if results_pre_temp.__len__() > 0:
-#             if results_pre.__len__() > 0:
-#                 results_pre.clear()
-#             results_pre.extend(results_pre_temp)
-#             results_pre_temp.clear()
-#         if(is_video):
-#             # generate(, CAP_DSHOWN=None, colors=color())
-#             return jsonify(
-#                 {"video": True,
-#                  'success': True,
-#                  "file":file_names[0]})
-#         else:
-#             cur = mysql.connection.cursor()
-#             for i in range(len(results_dict)):
-#                 filtered_dict = {k: v for k, v in results_dict[i].items() if k != 'SumShrimp'}
-#                 # print(file_names)
-#                 key = json.dumps(filtered_dict)
-#                 current_time = datetime.now()
-#                 sumShrimp = results_dict[i]["SumShrimp"]
-#                 email = session['user']['email']
-#                 cur.execute(f"""INSERT INTO history (shrimp_image,shrimp_kind, shrimp_total, c_time, email) 
-#                             VALUES ('{file_names[i]}','{key}','{sumShrimp}','{current_time}','{email}')""")
-#                 mysql.connection.commit()
-#             cur.close()
-#             return jsonify(
-#                 {'htmlresponse': render_template('response.html', msg=msg, filenames=file_names),
-#                  "Filename": file_names,
-#                  "Info": results_pre,
-#                  "video": False,
-#                  'success': True, }), 200
-#     else:
-#         return {'htmlresponse': 'Error!',
-#                 'success': False, }
 
 @app.route('/download', methods=['POST'])
 def download():

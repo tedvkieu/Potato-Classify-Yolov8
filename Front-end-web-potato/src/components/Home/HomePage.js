@@ -6,6 +6,9 @@ import { submitImageClassify } from '../../services/apiServices';
 import ModalDetected from '../Modal/ModalDetected';
 import HomeContent from './HomeContent';
 import HomeHistory from './HomeHistory';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const HomePage = (props) => {
     const [image, setImage] = useState([]);
@@ -90,6 +93,17 @@ const HomePage = (props) => {
                     <span>Youtube</span>
                 </div>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </div>
     );
 };

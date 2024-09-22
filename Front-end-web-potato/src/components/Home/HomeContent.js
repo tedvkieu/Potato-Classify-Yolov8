@@ -9,7 +9,7 @@ const HomeContent = (props) => {
             <div className="preview-image-potato">
                 <img
                     className="potato-preview"
-                    src="https://cdn.pixabay.com/photo/2018/09/20/11/39/potatoes-3690562_640.jpg"
+                    src="https://t4.ftcdn.net/jpg/05/99/86/89/360_F_599868906_52fGCZahH8BKeqkQqy8C56vRSfhxnuvF.jpg"
                 />
                 <img
                     className="potato-preview"
@@ -21,7 +21,7 @@ const HomeContent = (props) => {
                 />
                 <img
                     className="potato-preview"
-                    src="https://cdn.pixabay.com/photo/2017/03/19/18/10/baked-potatoes-2157201_1280.jpg"
+                    src="https://static.vecteezy.com/system/resources/previews/009/551/321/non_2x/leaf-of-potatoes-photo.jpg"
                 />
                 <img
                     className="potato-preview"
@@ -50,7 +50,9 @@ const HomeContent = (props) => {
                                 className="form-label label-upload"
                                 htmlFor="labelUpload">
                                 <FcPlus />
-                                <span className ="text-up pl-2">Upload File Images</span>
+                                <span className="text-up pl-2">
+                                    Upload File Images
+                                </span>
                             </label>
                             <input
                                 id="labelUpload"
@@ -79,7 +81,7 @@ const HomeContent = (props) => {
                             <button
                                 onClick={handleSubmit}
                                 className="btn btn-outline-success mx-3">
-                                Submit
+                                Detect
                             </button>
                         }
                     </div>

@@ -6,6 +6,7 @@ import {
     MdOutlineKeyboardArrowUp,
 } from 'react-icons/md';
 
+
 const ModalDetected = (props) => {
     const { show, setShow, previewImgDetect, responseInfo } = props;
     const [showEarlyDiseaseDetail, setShowEarlyDiseaseDetail] = useState(false);
@@ -37,35 +38,68 @@ const ModalDetected = (props) => {
                 <Modal.Title>Images Detected</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <div className="img-preview-detect">
-                    {previewImgDetect && previewImgDetect.length > 0 ? (
-                        previewImgDetect.map((img, index) => (
-                            <img key={index} src={img} alt="" />
-                        ))
-                    ) : (
-                        <span>Preview Images</span>
-                    )}
-                    <div className="text-time">
-                        Time: {new Date().toLocaleTimeString()}
-                    </div>
-                </div>
-                <div className="info-disease mt-3">
-                    {responseInfo && responseInfo.quantity > 0 ? (
-                        <>
-                            <div className="quantity-text">
-                                Quality image: {responseInfo.quantity}
+                {Array.isArray(previewImgDetect) ? (
+                    <>
+                        <div className="img-preview-detect">
+                            {previewImgDetect && previewImgDetect.length > 0 ? (
+                                previewImgDetect.map((img, index) => (
+                                    <img key={index} src={img} alt="" />
+                                ))
+                            ) : (
+                                <span>Preview Images</span>
+                            )}
+                            <div className="text-time">
+                                Time: {new Date().toLocaleTimeString()}
                             </div>
-                            {responseInfo.kind.map((item, index) => (
-                                <div key={index} className="row-result my-1">
-                                    <span>Image {index + 1}</span> <br />
-                                    <span>Type of Disease: {item}</span>
+                        </div>
+                        <div className="info-disease mt-3">
+                            {responseInfo && responseInfo.quantity > 0 ? (
+                                <>
+                                    <div className="quantity-text">
+                                        Quality image: {responseInfo.quantity}
+                                    </div>
+                                    {responseInfo.kind.map((item, index) => (
+                                        <div
+                                            key={index}
+                                            className="row-result my-1">
+                                            <span>Image {index + 1}</span>{' '}
+                                            <br />
+                                            <span>Type of Disease: {item}</span>
+                                        </div>
+                                    ))}
+                                </>
+                            ) : (
+                                <div>Quality image: 0</div>
+                            )}
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <div className="img-preview-detect">
+                            {previewImgDetect ? (
+                                <img
+                                    src={`http://127.0.0.1:5000/upload/yolov8/${previewImgDetect}`}
+                                    alt=""
+                                />
+                            ) : (
+                                <span>Preview Images</span>
+                            )}
+                            <div className="text-time">
+                                Time: {responseInfo.time}
+                            </div>
+                        </div>
+                        <div className="info-disease mt-3">
+                            <>
+                                <div className="row-result my-1">
+                                    <span>Image {responseInfo.id}</span> <br />
+                                    <span>
+                                        Type of Disease: {responseInfo.potato_kind}
+                                    </span>
                                 </div>
-                            ))}
-                        </>
-                    ) : (
-                        <div>Quality image: 0</div>
-                    )}
-                </div>
+                            </>
+                        </div>
+                    </>
+                )}
 
                 {showEarlyDiseaseDetail === true ? (
                     <div

@@ -1,13 +1,24 @@
 import { useEffect, useState } from 'react';
 import { FaUser } from 'react-icons/fa';
-import { fetchDataPagination, getAllHistory } from '../../services/apiServices';
+import {
+    deleteARecord,
+    fetchDataPagination,
+    getAllHistory,
+    getARecord,
+} from '../../services/apiServices';
 import ReactPaginate from 'react-paginate';
+import ModalDetected from '../Modal/ModalDetected';
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 const HomeHistory = (props) => {
     const [arrImg, setArrImg] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [perPage] = useState(4);
+    const [data, setData] = useState([]);
+    const [show, setShow] = useState(false);
+    const [imgDetect, setImgDetect] = [];
 
     // const serviceGetAllHistory = async () => {
     //     let res = await getAllHistory();
@@ -43,6 +54,49 @@ const HomeHistory = (props) => {
         }
     };
 
+    const handleClickRow = async (id) => {
+        let res = await getARecord(id);
+        console.log('check res by id: ', res);
+        setData(res);
+        setShow(true);
+    };
+
+    const handleClickView = async (id) => {
+        let res = await getARecord(id);
+        console.log('check res by id: ', res);
+        setData(res);
+        setShow(true);
+    };
+    const handleDelete = async (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    let ress = await deleteARecord(id);
+
+                    await fetchData(currentPage);
+                } catch (error) {
+                    console.error(
+                        'There was an error deleting the record!',
+                        error.response.data.error
+                    );
+                }
+                Swal.fire({
+                    title: 'Deleted!',
+                    text: 'Your file has been deleted.',
+                    icon: 'success',
+                });
+            }
+        });
+    };
+
     return (
         <div className="home-history mt-3">
             <div className="info-text">
@@ -65,20 +119,30 @@ const HomeHistory = (props) => {
                                 arrImg.length > 0 &&
                                 arrImg.map((img, index) => {
                                     return (
-                                        <tr>
+                                        <tr
+                                            onClick={() =>
+                                                handleClickRow(img.id)
+                                            }>
                                             <th scope="row">{img.id}</th>
                                             <td>
                                                 <img
-                                                    src={`http://127.0.0.1:5000/upload/yolov8/${img.potato_img}`}
+                                                    src={`http://localhost:5000/upload/yolov8/${img.potato_img}`}
                                                 />
                                             </td>
                                             <td>{img.potato_kind}</td>
                                             <td>{img.time}</td>
                                             <td className="button-edit">
-                                                <button className="btn btn-secondary custom-margin">
+                                                <button
+                                                    className="btn btn-secondary custom-margin"
+                                                    onClick={handleClickView}>
                                                     View
                                                 </button>
-                                                <button className="btn btn-dark mr-3">
+                                                <button
+                                                    className="btn btn-dark mr-3"
+                                                    onClick={(event) => {
+                                                        event.stopPropagation();
+                                                        handleDelete(img.id);
+                                                    }}>
                                                     Delete
                                                 </button>
                                             </td>
@@ -86,6 +150,12 @@ const HomeHistory = (props) => {
                                     );
                                 })}
                         </tbody>
+                        <ModalDetected
+                            show={show}
+                            setShow={setShow}
+                            previewImgDetect={data.potato_img}
+                            responseInfo={data}
+                        />
                     </table>
                     <div
                         className="user_pagination"

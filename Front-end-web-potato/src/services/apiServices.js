@@ -90,6 +90,14 @@ const getAllHistory = () => {
     return axios.get('/get-all-history');
 };
 
+const getARecord = (image_id) => {
+    return axios.get(`/view-record/${image_id}`);
+};
+
+const deleteARecord = (image_id) => {
+    return axios.delete(`http://localhost:5000/delete-a-record/${image_id}`);
+};
+
 const fetchDataPagination = (page, perPage) => {
     return axios.get(`get-history?page=${page}&per_page=${perPage}`);
 };
@@ -110,4 +118,6 @@ export {
     submitImageClassify,
     getAllHistory,
     fetchDataPagination,
+    getARecord,
+    deleteARecord,
 };
