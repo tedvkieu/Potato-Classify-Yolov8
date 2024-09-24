@@ -9,10 +9,9 @@ import HomeHistory from './HomeHistory';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 const HomePage = (props) => {
     const [image, setImage] = useState([]);
-    const [previewImg, setPreviewImg] = useState([]);
+    const [previewImg, setPreviewImg] = useState({});
     const [previewImgDetect, setPreviewImgDetect] = useState([]);
     const [show, setShow] = useState(false);
     const [responseInfo, setResponseInfo] = useState(null);
@@ -35,11 +34,11 @@ const HomePage = (props) => {
         try {
             const response = await submitImageClassify(image);
 
-            console.log('res: ', response);
+            console.log('res: ', response.results);
 
             if (response.success) {
                 setResponseInfo(response);
-                setPreviewImgDetect(response.files);
+                setPreviewImgDetect(response.results);
                 setShow(true);
             } else {
                 alert('Upload failed');

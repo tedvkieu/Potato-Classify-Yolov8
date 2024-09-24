@@ -37,7 +37,7 @@ app.config['MYSQL_DB'] = 'potatoyolov8'
 mysql = MySQL(app)
 
 
-model = my_YoloV8.YOLOv8_ObjectCounter(model_file="best.pt")
+model = my_YoloV8.YOLOv8_ObjectCounter(model_file="best_3.pt")
 
 
 app.secret_key = os.environ.get("FLASK_SECRET")
@@ -309,7 +309,7 @@ def view_a_record(image_id):
     if result:
         image_details = {
             'id': result[0],                
-            'potato_img': result[1],      
+            'potato_img': 'http://127.0.0.1:5000/upload/yolov8/'+result[1],      
             'potato_kind': result[2],     
             'time': result[3]   
         }
@@ -369,40 +369,51 @@ def upload_file():
         return jsonify({'success': False, 'message': 'No selected file'}), 400
 
     try:
+        results_per_image = []
+
         for file in files:
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
                 path_save = os.path.join(app.config['UPLOAD_FOLDER'], 'image', filename)
                 file.save(path_save)
                 
-                # Đọc và xử lý ảnh (hoặc video) nếu cần
+                # Đọc và xử lý ảnh
                 frame = cv2.imread(path_save)
                 if frame is None:
                     return jsonify({'success': False, 'message': 'Failed to read image'}), 500
 
+                # Dự đoán kết quả
                 results = model.predict_img(frame)
                 result_img = model.custom_display(colors=color())
                 
-                # Xử lý kết quả của ảnh
+                # Nếu có kết quả, xử lý và lưu lại kết quả cho từng ảnh
                 if len(results) > 0:
                     dictObject, save_name = model.count_object(results, app.config['UPLOAD_FOLDER'], result_img)
                     files_detected.append(save_name)
-                    for kind in dictObject.keys():
-                        current_time = datetime.now()
-                        cur = mysql.connection.cursor()
-                        results_pre_temp.append(kind)
-                        quantity +=1
-                        sql = "INSERT INTO history (potato_img, potato_kind, c_time) VALUES (%s, %s, %s)"
-                        cur.execute(sql, (save_name, kind, current_time))
-                        mysql.connection.commit()
-                        cur.close()
-        time = datetime.now()
-        print("check kind: ", results_pre_temp)
-        base_url = request.host_url.rstrip('/')
-        files_detected_urls = [f"{base_url}/upload/yolov8/{file}" for file in files_detected]
-           
-        return jsonify({'success': True, 'message': 'Files processed successfully','time': time, 'files': files_detected_urls, 'kind': results_pre_temp, 'quantity': quantity}), 200
+                    results_pre_temp = list(dictObject.keys())  # Lưu kết quả loại bệnh từ dictObject
 
+                    # Lưu thông tin vào cơ sở dữ liệu
+                    current_time = datetime.now()
+                    cur = mysql.connection.cursor()
+                    quantity += 1
+                    results_pre_temp_str = ', '.join(results_pre_temp)
+                    sql = f"INSERT INTO history (potato_img, potato_kind, c_time) VALUES ('{save_name}', '{results_pre_temp_str}', '{current_time}')"
+                    print(sql)
+                    cur.execute(sql)
+                    mysql.connection.commit()
+                    cur.close()
+
+                    # Lưu kết quả cho từng ảnh vào danh sách
+                    base_url = request.host_url.rstrip('/')
+                    file_url = f"{base_url}/upload/yolov8/{save_name}"
+                    results_per_image.append({'file': file_url,'kind': results_pre_temp})
+
+                print("check kind: ", results_per_image)
+
+
+        time = datetime.now()
+        return jsonify({'success': True, 'message': 'Files processed successfully', 'time': time, 
+                                    'results': results_per_image, 'quantity': quantity}), 200
     except Exception as e:
         print(f"Error: {e}")
         return jsonify({'success': False, 'message': 'An error occurred'}), 500

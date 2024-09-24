@@ -10,6 +10,7 @@ import ReactPaginate from 'react-paginate';
 import ModalDetected from '../Modal/ModalDetected';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
+import ModalViewHistory from '../Modal/ModalViewHistory';
 
 const HomeHistory = (props) => {
     const [arrImg, setArrImg] = useState([]);
@@ -138,7 +139,7 @@ const HomeHistory = (props) => {
                                                     View
                                                 </button>
                                                 <button
-                                                    className="btn btn-dark mr-3"
+                                                    className="btn btn-danger mr-3"
                                                     onClick={(event) => {
                                                         event.stopPropagation();
                                                         handleDelete(img.id);
@@ -150,7 +151,7 @@ const HomeHistory = (props) => {
                                     );
                                 })}
                         </tbody>
-                        <ModalDetected
+                        <ModalViewHistory
                             show={show}
                             setShow={setShow}
                             previewImgDetect={data.potato_img}
@@ -170,7 +171,12 @@ const HomeHistory = (props) => {
                             disabled={currentPage === 1}>
                             Previous
                         </button>
-                        <span style={{ margin: '0 20px', fontSize: '20px' }}>
+                        <span
+                            style={{
+                                margin: '0 20px',
+                                fontSize: '20px',
+                                color: '#ccc',
+                            }}>
                             Page {currentPage} of {totalPages}
                         </span>
                         <button
