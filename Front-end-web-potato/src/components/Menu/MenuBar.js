@@ -20,7 +20,7 @@ const MenuBar = (props) => {
         <div className="menu-bar-content">
             <div className="img-detect">
                 <img
-                    src="https://www.researchgate.net/publication/364508413/figure/fig6/AS:11431281120261383@1676463740581/The-leaf-detection-results-by-YOLO-v3-which-is-trained-with-our-rectangle-annotation-data.jpg"
+                    src="https://cdn.mos.cms.futurecdn.net/n6gGwHFUUrNCPLoVDUCad4.jpg"
                     alt="Detection"
                 />
             </div>
@@ -38,7 +38,6 @@ const MenuBar = (props) => {
                         }`}
                         onClick={() => handleItemClick(index)} // Xử lý click cho item
                     >
-           
                         <div className="icon">{item.icon}</div>
                         <span className="text">{item.text}</span>
                     </div>

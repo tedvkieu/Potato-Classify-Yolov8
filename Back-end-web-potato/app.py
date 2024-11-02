@@ -32,7 +32,7 @@ app.config['UPLOAD_FOLDER'] = "static"
 # app.secret_key = 'dhbsfbsdbc8223bd'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '12345678'
+app.config['MYSQL_PASSWORD'] = '123456'
 app.config['MYSQL_DB'] = 'potatoyolov8'
 mysql = MySQL(app)
 
